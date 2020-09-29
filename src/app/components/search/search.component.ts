@@ -17,12 +17,12 @@ export class SearchComponent implements OnInit {
   branchData: any[];
   displayList: any[];
   isEmptyList = true;
-  
-  bankName; bankNames: any[]; 
+
+  bankName; bankNames: any[];
   bankBranchNames: any;
 
   districtName;
-  districtNames: any; 
+  districtNames: any;
   districtNamesList: any[];
 
   stateName;

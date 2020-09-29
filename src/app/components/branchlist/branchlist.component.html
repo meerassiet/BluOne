@@ -8,8 +8,8 @@
             Bank IFSC
             <mat-divider></mat-divider>
             <a style="cursor: pointer" (click)="LogOut()">
-                LogOut            
-        </a>
+                LogOut
+            </a>
             <mat-divider></mat-divider>
         </mat-drawer>
         <mat-drawer-content>
@@ -28,31 +28,37 @@
                                 <mat-form-field appearance="outline">
                                     <mat-label>Bank</mat-label>
                                     <input matInput formControlName="Bank" required>
-                                    <mat-error *ngIf="addForm.controls['Bank'].errors?.required">This field is mandatory</mat-error>
+                                    <mat-error *ngIf="addForm.controls['Bank'].errors?.required">This field is mandatory
+                                    </mat-error>
                                 </mat-form-field>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Branch Name</mat-label>
                                     <input matInput formControlName="BranchName" required>
-                                    <mat-error *ngIf="addForm.controls['BranchName'].errors?.required">This field is mandatory</mat-error>
+                                    <mat-error *ngIf="addForm.controls['BranchName'].errors?.required">This field is mandatory
+                                    </mat-error>
                                 </mat-form-field>
                                 <mat-form-field appearance="outline">
                                     <mat-label>State</mat-label>
                                     <select matNativeControl formControlName="State" required (change)="getDistrict(districtSearch)" [(ngModel)]="districtSearch">
-                                        <option *ngFor='let list of stateDistrict' value="{{list.name}}">{{list.name}}</option>                                                                
+                                        <option *ngFor='let list of stateDistrict' value="{{list.name}}">{{list.name}}
+                                        </option>
                                     </select>
-                                    <mat-error *ngIf="addForm.controls['State'].errors?.required">This field is mandatory</mat-error>
+                                    <mat-error *ngIf="addForm.controls['State'].errors?.required">This field is mandatory
+                                    </mat-error>
                                 </mat-form-field>
                                 <mat-form-field appearance="outline">
                                     <mat-label>District</mat-label>
                                     <select matNativeControl formControlName="District" required>
-                                        <option *ngFor='let list of districtList' value="{{list}}">{{list}}</option>                            
+                                        <option *ngFor='let list of districtList' value="{{list}}">{{list}}</option>
                                     </select>
-                                    <mat-error *ngIf="addForm.controls['District'].errors?.required">This field is mandatory</mat-error>
+                                    <mat-error *ngIf="addForm.controls['District'].errors?.required">This field is mandatory
+                                    </mat-error>
                                 </mat-form-field>
                                 <mat-form-field appearance="outline">
                                     <mat-label>IFSC_Code</mat-label>
                                     <input matInput formControlName="IFSC_Code" required>
-                                    <mat-error *ngIf="addForm.controls['IFSC_Code'].errors?.required">This field is mandatory</mat-error>
+                                    <mat-error *ngIf="addForm.controls['IFSC_Code'].errors?.required">This field is mandatory
+                                    </mat-error>
                                 </mat-form-field>
                                 <div>
                                     <mat-card-actions layout="row">
@@ -83,8 +89,8 @@
                                 <td>{{list.State}}</td>
                                 <td>
                                     <a style="cursor: pointer" (click)="deleteItem(i)">
-                                    Delete            
-                                </a>
+                                        Delete
+                                    </a>
                                 </td>
                             </tr>
                         </table>

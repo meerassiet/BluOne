@@ -1,0 +1,96 @@
+<div class="book1">
+    <mat-drawer-container class="example-container">
+        <mat-drawer mode="side" opened style="width: 20%;">
+            <br><br><br>
+            <mat-divider></mat-divider>
+            AirIndex
+            <mat-divider></mat-divider>
+            Bank IFSC
+            <mat-divider></mat-divider>
+            <a style="cursor: pointer" (click)="LogOut()">
+                LogOut            
+        </a>
+            <mat-divider></mat-divider>
+        </mat-drawer>
+        <mat-drawer-content>
+            <mat-card>
+                <mat-card-header style="float: right;">
+                    <div>Hello {{UserEmail}}
+                    </div>
+                </mat-card-header><br><br>
+                <mat-card-content>
+                    <div>
+                        <button mat-raised-button (click)="addBranch()" style="float: right;">Add Branch</button>
+                    </div><br><br>
+                    <div *ngIf="isAddBranch">
+                        <div class="book">
+                            <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Bank</mat-label>
+                                    <input matInput formControlName="Bank" required>
+                                    <mat-error *ngIf="addForm.controls['Bank'].errors?.required">This field is mandatory</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Branch Name</mat-label>
+                                    <input matInput formControlName="BranchName" required>
+                                    <mat-error *ngIf="addForm.controls['BranchName'].errors?.required">This field is mandatory</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>State</mat-label>
+                                    <select matNativeControl formControlName="State" required (change)="getDistrict(districtSearch)" [(ngModel)]="districtSearch">
+                                        <option *ngFor='let list of stateDistrict' value="{{list.name}}">{{list.name}}</option>                                                                
+                                    </select>
+                                    <mat-error *ngIf="addForm.controls['State'].errors?.required">This field is mandatory</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>District</mat-label>
+                                    <select matNativeControl formControlName="District" required>
+                                        <option *ngFor='let list of districtList' value="{{list}}">{{list}}</option>                            
+                                    </select>
+                                    <mat-error *ngIf="addForm.controls['District'].errors?.required">This field is mandatory</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>IFSC_Code</mat-label>
+                                    <input matInput formControlName="IFSC_Code" required>
+                                    <mat-error *ngIf="addForm.controls['IFSC_Code'].errors?.required">This field is mandatory</mat-error>
+                                </mat-form-field>
+                                <div>
+                                    <mat-card-actions layout="row">
+                                        <button mat-raised-button type="submit" style="background-color: yellow;margin: 0;">Add</button>
+                                    </mat-card-actions>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                        <br>
+
+                        <table matSort (matSortChange)="sortData($event)" style="width: 100%;">
+                            <tr>
+                                <th mat-sort-header="Bank">Bank</th>
+                                <th mat-sort-header="BranchName">BranchName</th>
+                                <th mat-sort-header="IFSC_Code">IFSC_Code</th>
+                                <th mat-sort-header="District">District</th>
+                                <th mat-sort-header="State">State</th>
+                                <th mat-sort-header="Action">Action</th>
+                            </tr>
+
+                            <tr *ngFor="let list of branchData, index as i">
+                                <td>{{list.Bank}}</td>
+                                <td>{{list.BranchName}}</td>
+                                <td>{{list.IFSC_Code}}</td>
+                                <td>{{list.District}}</td>
+                                <td>{{list.State}}</td>
+                                <td>
+                                    <a style="cursor: pointer" (click)="deleteItem(i)">
+                                    Delete            
+                                </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

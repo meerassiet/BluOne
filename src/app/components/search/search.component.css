@@ -1,0 +1,11 @@
+.container {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white;
+    padding: 0;
+    float: right;
+    text-align: right;
+}

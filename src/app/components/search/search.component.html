@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="form">
+        <form [formGroup]="bankForm" (ngSubmit)="onSubmit()">
+            Select your bank
+            <mat-form-field appearance="outline">
+                <mat-label></mat-label>
+                <select matNativeControl formControlName="Bank" #field1 (change)="getStates($event.target.value)" [(ngModel)]="bankName" required>
+                    <option *ngFor='let list of bankNames' value="{{list}}">{{list}}</option>
+                </select>
+            </mat-form-field> &nbsp;&nbsp;
+            <a style="cursor: pointer" (click)="field1.value=' ' && field2.value=' ' && field3.value=' ' && field4.value=' '">
+                <mat-icon *ngIf="bankName">close</mat-icon>
+            </a><br> State in which bank is situated
+            <mat-form-field appearance="outline">
+                <mat-label></mat-label>
+                <select matNativeControl formControlName="State" #field2 (change)="getDistricts($event.target.value)" [(ngModel)]="stateName" required>
+                    <option *ngFor='let list of stateNamesList' value="{{list.State}}">{{list.State}}</option>
+                </select>
+            </mat-form-field> &nbsp;&nbsp;
+            <a style="cursor: pointer" (click)="field2.value=' ' && field3.value=' ' && field4.value=' '">
+                <mat-icon *ngIf="stateName">close</mat-icon>
+            </a><br> District in which bank is situated
+            <mat-form-field appearance="outline">
+                <mat-label></mat-label>
+                <select matNativeControl formControlName="District" #field3 (change)="getBranchNames($event.target.value)" [(ngModel)]="districtName" required>
+                    <option *ngFor='let list of districtNamesList' value="{{list.District}}">{{list.District}}</option>
+                </select>
+            </mat-form-field>&nbsp;&nbsp;
+            <a style="cursor: pointer" (click)="field3.value=' ' && field4.value=' '">
+                <mat-icon *ngIf="districtName">close</mat-icon>
+            </a><br> Branch of Bank within District
+            <mat-form-field appearance="outline">
+                <mat-label></mat-label>
+                <select matNativeControl formControlName="BranchName" #field4 required>
+                    <option *ngFor='let list of bankBranchNames' value="{{list.BranchName}}">{{list.BranchName}}
+                    </option>
+                </select>
+            </mat-form-field>
+            <div>
+                <mat-card-actions layout="row">
+                    <button mat-raised-button type="submit">Find Now</button>
+                </mat-card-actions>
+            </div>
+        </form>
+    </div>
+    <br> OR
+    <br>
+    <div class="form">
+        <form [formGroup]="IFSCForm" (ngSubmit)="onSubmit()">
+            IFSC code
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="IFSC" type="text" placeholder="ABCDxxx" [(ngModel)]="IFSCSearch" required>
+                <mat-error *ngIf="IFSCForm.controls['IFSC'].errors?.required">This field is mandatory</mat-error>
+            </mat-form-field>
+            <div>
+                <mat-card-actions layout="row">
+                    <button mat-raised-button type="submit">Get Details</button>
+                </mat-card-actions>
+            </div>
+        </form>
+    </div>
+    <table [hidden]="isEmptyList" style="width:100%">
+        <tr>
+            <th>BranchName</th>
+            <th>Bank</th>
+            <th>IFSC_Code</th>
+            <th>District</th>
+            <th>State</th>
+        </tr>
+        <tr *ngFor="let list of displayList">
+            <td>{{list.BranchName}}</td>
+            <td>{{list.Bank}}</td>
+            <td>{{list.IFSC_Code}}</td>
+            <td>{{list.District}}</td>
+            <td>{{list.State}}</td>
+        </tr>
+    </table>
+</div>
